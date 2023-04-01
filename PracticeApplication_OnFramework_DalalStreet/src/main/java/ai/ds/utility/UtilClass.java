@@ -1,0 +1,41 @@
+package ai.ds.utility;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.io.FileHandler;
+import org.openqa.selenium.support.PageFactory;
+
+import ai.ds.testBase.TestBase;
+
+public class UtilClass extends TestBase {
+	
+	public UtilClass()
+	{
+		PageFactory.initElements(driver, this);
+	}
+	
+	//--------------------------------------------------
+	public static void takesScreenshot(String filename)
+	{
+		try {
+		TakesScreenshot ts =(TakesScreenshot)driver;
+		File src = ts.getScreenshotAs(OutputType.FILE);
+		String path="C:\\Users\\ARUN\\eclipse-workspace\\PracticeApp\\screenshot\\";
+		File des = new File(path+filename+".png");
+		FileHandler.copy(src, des);
+		} catch (IOException e)
+		{
+			System.out.println("IOException - file not found");
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	
+
+}
